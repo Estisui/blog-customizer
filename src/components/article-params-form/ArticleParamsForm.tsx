@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { useOutsideClickClose } from '../select/hooks/useOutsideClickClose';
 import {
 	ArticleStateType,
+	backgroundColors,
 	fontColors,
 	fontFamilyOptions,
 	fontSizeOptions,
@@ -14,6 +15,7 @@ import {
 import { Select } from '../select';
 import { Text } from '../text';
 import { RadioGroup } from '../radio-group';
+import { Separator } from '../separator';
 
 type ArticleParamsFormProps = {
 	articleState: ArticleStateType;
@@ -28,6 +30,9 @@ export const ArticleParamsForm = ({
 	const [fontFamily, setFontFamily] = useState(articleState.fontFamilyOption);
 	const [fontSize, setFontSize] = useState(articleState.fontSizeOption);
 	const [fontColor, setFontColor] = useState(articleState.fontColor);
+	const [backgroundColor, setBackgroundColor] = useState(
+		articleState.backgroundColor
+	);
 	const rootRef = useRef(null);
 
 	useOutsideClickClose({
@@ -44,6 +49,7 @@ export const ArticleParamsForm = ({
 			fontFamilyOption: fontFamily,
 			fontSizeOption: fontSize,
 			fontColor: fontColor,
+			backgroundColor: backgroundColor,
 		});
 	};
 
@@ -75,6 +81,13 @@ export const ArticleParamsForm = ({
 						selected={fontColor}
 						title='Цвет шрифта'
 						onChange={setFontColor}
+					/>
+					<Separator />
+					<Select
+						options={backgroundColors}
+						selected={backgroundColor}
+						title='Цвет фона'
+						onChange={setBackgroundColor}
 					/>
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' type='reset' />
