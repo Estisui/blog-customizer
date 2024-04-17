@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { useOutsideClickClose } from '../select/hooks/useOutsideClickClose';
 import { ArticleStateType, fontColors } from 'src/constants/articleProps';
 import { Select } from '../select';
+import { Text } from '../text';
 
 type ArticleParamsFormProps = {
 	articleState: ArticleStateType;
@@ -40,6 +41,9 @@ export const ArticleParamsForm = ({
 				ref={rootRef}
 				className={clsx(styles.container, isOpen && styles.container_open)}>
 				<form className={styles.form} onSubmit={formSubmitHandler}>
+					<Text as={'h2'} size={31} weight={800} uppercase={true}>
+						Задайте параметры
+					</Text>
 					<Select
 						options={fontColors}
 						selected={fontColor}
