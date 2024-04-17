@@ -9,6 +9,7 @@ import {
 	ArticleStateType,
 	backgroundColors,
 	contentWidthArr,
+	defaultArticleState,
 	fontColors,
 	fontFamilyOptions,
 	fontSizeOptions,
@@ -44,6 +45,16 @@ export const ArticleParamsForm = ({
 		onChange: setIsOpen,
 	});
 
+	const formResetHandler = (e: FormEvent) => {
+		e.preventDefault();
+		setFontFamily(defaultArticleState.fontFamilyOption);
+		setFontSize(defaultArticleState.fontSizeOption);
+		setFontColor(defaultArticleState.fontColor);
+		setBackgroundColor(defaultArticleState.backgroundColor);
+		setContentWidth(defaultArticleState.contentWidth);
+		setArticleState(defaultArticleState);
+	};
+
 	const formSubmitHandler = (e: FormEvent) => {
 		e.preventDefault();
 		setArticleState({
@@ -61,7 +72,10 @@ export const ArticleParamsForm = ({
 			<aside
 				ref={rootRef}
 				className={clsx(styles.container, isOpen && styles.container_open)}>
-				<form className={styles.form} onSubmit={formSubmitHandler}>
+				<form
+					className={styles.form}
+					onSubmit={formSubmitHandler}
+					onReset={formResetHandler}>
 					<Text as={'h2'} size={31} weight={800} uppercase={true}>
 						Задайте параметры
 					</Text>
