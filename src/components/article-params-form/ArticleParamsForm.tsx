@@ -5,7 +5,11 @@ import styles from './ArticleParamsForm.module.scss';
 import { FormEvent, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useOutsideClickClose } from '../select/hooks/useOutsideClickClose';
-import { ArticleStateType, fontColors } from 'src/constants/articleProps';
+import {
+	ArticleStateType,
+	fontColors,
+	fontFamilyOptions,
+} from 'src/constants/articleProps';
 import { Select } from '../select';
 import { Text } from '../text';
 
@@ -19,6 +23,7 @@ export const ArticleParamsForm = ({
 	setArticleState,
 }: ArticleParamsFormProps) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [fontFamily, setFontFamily] = useState(articleState.fontFamilyOption);
 	const [fontColor, setFontColor] = useState(articleState.fontColor);
 	const rootRef = useRef(null);
 
@@ -31,7 +36,11 @@ export const ArticleParamsForm = ({
 
 	const formSubmitHandler = (e: FormEvent) => {
 		e.preventDefault();
-		setArticleState({ ...articleState, fontColor: fontColor });
+		setArticleState({
+			...articleState,
+			fontFamilyOption: fontFamily,
+			fontColor: fontColor,
+		});
 	};
 
 	return (
@@ -44,6 +53,12 @@ export const ArticleParamsForm = ({
 					<Text as={'h2'} size={31} weight={800} uppercase={true}>
 						Задайте параметры
 					</Text>
+					<Select
+						options={fontFamilyOptions}
+						selected={fontFamily}
+						title='Шрифт'
+						onChange={setFontFamily}
+					/>
 					<Select
 						options={fontColors}
 						selected={fontColor}
