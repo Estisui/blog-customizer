@@ -9,9 +9,11 @@ import {
 	ArticleStateType,
 	fontColors,
 	fontFamilyOptions,
+	fontSizeOptions,
 } from 'src/constants/articleProps';
 import { Select } from '../select';
 import { Text } from '../text';
+import { RadioGroup } from '../radio-group';
 
 type ArticleParamsFormProps = {
 	articleState: ArticleStateType;
@@ -24,6 +26,7 @@ export const ArticleParamsForm = ({
 }: ArticleParamsFormProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [fontFamily, setFontFamily] = useState(articleState.fontFamilyOption);
+	const [fontSize, setFontSize] = useState(articleState.fontSizeOption);
 	const [fontColor, setFontColor] = useState(articleState.fontColor);
 	const rootRef = useRef(null);
 
@@ -39,6 +42,7 @@ export const ArticleParamsForm = ({
 		setArticleState({
 			...articleState,
 			fontFamilyOption: fontFamily,
+			fontSizeOption: fontSize,
 			fontColor: fontColor,
 		});
 	};
@@ -58,6 +62,13 @@ export const ArticleParamsForm = ({
 						selected={fontFamily}
 						title='Шрифт'
 						onChange={setFontFamily}
+					/>
+					<RadioGroup
+						options={fontSizeOptions}
+						selected={fontSize}
+						title='Размер шрифта'
+						name='Размер шрифта'
+						onChange={setFontSize}
 					/>
 					<Select
 						options={fontColors}
