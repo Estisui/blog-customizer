@@ -8,6 +8,7 @@ import { useOutsideClickClose } from '../select/hooks/useOutsideClickClose';
 import {
 	ArticleStateType,
 	backgroundColors,
+	contentWidthArr,
 	fontColors,
 	fontFamilyOptions,
 	fontSizeOptions,
@@ -33,6 +34,7 @@ export const ArticleParamsForm = ({
 	const [backgroundColor, setBackgroundColor] = useState(
 		articleState.backgroundColor
 	);
+	const [contentWidth, setContentWidth] = useState(articleState.contentWidth);
 	const rootRef = useRef(null);
 
 	useOutsideClickClose({
@@ -45,11 +47,11 @@ export const ArticleParamsForm = ({
 	const formSubmitHandler = (e: FormEvent) => {
 		e.preventDefault();
 		setArticleState({
-			...articleState,
 			fontFamilyOption: fontFamily,
 			fontSizeOption: fontSize,
 			fontColor: fontColor,
 			backgroundColor: backgroundColor,
+			contentWidth: contentWidth,
 		});
 	};
 
@@ -88,6 +90,12 @@ export const ArticleParamsForm = ({
 						selected={backgroundColor}
 						title='Цвет фона'
 						onChange={setBackgroundColor}
+					/>
+					<Select
+						options={contentWidthArr}
+						selected={contentWidth}
+						title='Ширина контента'
+						onChange={setContentWidth}
 					/>
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' type='reset' />
