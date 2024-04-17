@@ -47,7 +47,7 @@ export const ArticleParamsForm = ({
 					<Select
 						options={fontColors}
 						selected={fontColor}
-						title='цвет'
+						title='Цвет шрифта'
 						onChange={setFontColor}
 					/>
 					<div className={styles.bottomContainer}>
