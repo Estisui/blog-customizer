@@ -36,7 +36,7 @@ export const ArticleParamsForm = ({
 		articleState.backgroundColor
 	);
 	const [contentWidth, setContentWidth] = useState(articleState.contentWidth);
-	const rootRef = useRef(null);
+	const rootRef = useRef<HTMLElement | null>(null);
 
 	useOutsideClickClose({
 		isOpen,
