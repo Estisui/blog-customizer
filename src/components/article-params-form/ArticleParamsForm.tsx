@@ -45,8 +45,7 @@ export const ArticleParamsForm = ({
 		onChange: setIsOpen,
 	});
 
-	const formResetHandler = (e: FormEvent) => {
-		e.preventDefault();
+	const formResetHandler = () => {
 		setFontFamily(defaultArticleState.fontFamilyOption);
 		setFontSize(defaultArticleState.fontSizeOption);
 		setFontColor(defaultArticleState.fontColor);
